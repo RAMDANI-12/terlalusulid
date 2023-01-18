@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogRes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LogResController extends Controller
 {
@@ -15,8 +16,9 @@ class LogResController extends Controller
      */
     public function regis(){
         return view('register.index');
+    }
 
-        function store(Request $request){
+    public function store(Request $request){
             $validateData = $request->validate([
                 'nama' => 'required',
                 'nohp' => 'required',
@@ -24,18 +26,22 @@ class LogResController extends Controller
                 'pass' => 'required',
             ]);
 
-            $validateData['pass'] = bcrypt($validateData['pass']);
+            LogRes::create([
+                'nama' => $request->nama,
+                'nohp' => $request->nohp,
+                'email' => $request->email,
+                'pass' => Hash::make($request->password),
+            ]);
 
-            LogRes::create($validateData);
-            return redirect('login')-with('succes','Registrasi Berhasil! , Silahkan Login');
+            return redirect('login')->with('succes','Registrasi Berhasil! , Silahkan Login');
         }
-    }
 
     public function login(){
 
         return view('login.index');
+    }
 
-        function authanticate(Request $request){
+    public function authanticate(Request $request){
             $login = $request->validate([
                         'email' => 'required',
                         'pass' => 'required',
@@ -44,11 +50,10 @@ class LogResController extends Controller
             if (Auth::attempt($login)) {
                 $request->session()->regenerate();
 
-                return redirect()->intended('');
+                return redirect()->intended();
             }
-            return back('')->with('LoginEror','Login Gagal!, Silahkan coba lagi');
+            return back('login.index')->with('LoginEror','Login Gagal!, Silahkan coba lagi');
         }
-    }
 
     
 
@@ -58,17 +63,6 @@ class LogResController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
     {
         //
     }

@@ -8,5 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class LogRes extends Model
 {
     use HasFactory;
-    
+
+    protected $table = 'log_res';
+    protected $fillable = [
+        'nama',
+        'nohp',
+        'email',
+        'pass'
+    ];
 }

@@ -30,7 +30,8 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form action="{{ route('login') }}" method="POST" class="login100-form validate-form">
+					@csrf
 					<span class="login100-form-title">
 						Member Login
 					</span>
@@ -51,11 +52,13 @@
 						</span>
 					</div>
 					
+					<form action="{{route('why')}}" method="post">
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
 						</button>
 					</div>
+					</form>
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
@@ -67,7 +70,7 @@
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
+						<a class="txt2" href="{{route('register')}}">
 							Belum Memiliki Akun
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -77,7 +80,7 @@
 		</div>
 	</div>
 	
-	
+	 
 
 	
 <!--===============================================================================================-->	

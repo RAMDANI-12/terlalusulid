@@ -20,11 +20,16 @@ Route::get('/', function () {
 });
 
 Route::get('index',[LandingController::class,'index'])->name('index');
-Route::get('why',[LandingController::class,'why'])->name('why')->middleware('auth');
+Route::get('why',[LandingController::class,'why'])->name('why');
 
 
 Route::get('register',[LogResController::class,'regis'])->name('register');
+Route::post('store',[LogResController::class,'store'])->name('store');
+
+
+
 Route::get('login',[LogResController::class,'login'])->name('login');
+Route::post('login',[LogResController::class,'authanticate'])->name('login');
 
 
 Route::get('read', function () {

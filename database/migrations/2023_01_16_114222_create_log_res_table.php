@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('log_res', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->char('nohp');
+            $table->string('email');
+            $table->string('pass');
             $table->timestamps();
         });
     }

@@ -22,6 +22,13 @@
 <!--===============================================================================================-->
 </head>
 <body>
+
+	@if (session('success'))
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		{{ session ('success') }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+@endif
 	
 	<div class="limiter">
 		<div class="container-login100">
@@ -30,7 +37,8 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form action="{{ route('store') }}" method="POST" class="login100-form validate-form">
+					@csrf
 					<span class="login100-form-title">
 						Member Login
 					</span>
@@ -39,7 +47,10 @@
 						<input class="input100" type="text" name="nama" placeholder="Nama">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+								<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+								<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+							  </svg>
 						</span>
 					</div>
 
@@ -47,7 +58,9 @@
 						<input class="input100" type="text" name="nohp" placeholder="No Handphone">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
+								<path d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
+							  </svg>
 						</span>
 					</div>
 
@@ -68,11 +81,13 @@
 						</span>
 					</div>
 					
+					<form action="{{route('login')}}" method="post">
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							 Register
 						</button>
 					</div>
+					</form>
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
